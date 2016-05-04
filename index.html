@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Gateway Solutions & Mobile Wallet in India - Citrus Pay</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="description" content="India's best payment stack for developers, instant payments for businesses and seamless
+    checkout for consumers. Payment gateway, mobile wallet, unique marketplace solution and more - for all your payment needs.">
+    <meta name="robots" content="index,follow"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0, user-scalable=0"/>
+    <meta name="keywords" content="payment gateway, payment gateway in india, online payment gateway, best payment gateway,
+    Citrus Pay, Citrus Payments, Citrus payment solutions, split pay, splitpay, marketplace, marketplace payment solution,
+    project flight, citrus cube, citrus wallet, Internet payment gateway, e payment gateway, payment gateway providers,
+    Indian payment gateways, India, Payment processing, Credit Card Transactions, CC Transactions, Credit Card processing,
+    Visa India, Master Card India, E commerce Transactions, E commerce India, Online shopping, Secure online shop,
+    India online security, India payment solution, online payments, online transactions, international merchants,
+    internet transaction, Indian credit card service, credit cards, debit cards, net banking, digital india, net neutrality"/>
+	<meta http-equiv="Cache-Control" content="no-cache" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="google-site-verification" content="Zt5x4NtjPCMTdBdtrKZxOq37Y70fBoyat0RRWbrVvHc" />
+	<meta name="google-site-verification" content="-4bjMxe39z4ErwFmfrxe4tSpxzdaQ3r3iNu06cSSPtM" />
+    <link rel="icon" href="images/logo.png" type="image/png" sizes="16x16" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="css/tipsy.css"/>
+	<link rel="stylesheet" type="text/css" href="css/jquery.impromptu.css"/> 
+    <link rel="stylesheet" type="text/css" href="landingassets/css/custom.css">
+
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
+	<script type="text/javascript" src="js/jquery.validate.js"></script>
+	<script type="text/javascript" src="js/custom.js"></script>
+	<script type="text/javascript" src="js/jquery-migrate-1.2.1.js"></script>
+	<script type="text/javascript" src="js/jquery-impromptu.4.0.min.js"></script>
+	<script type="text/javascript" src="js/jquery.tipsy.js"></script>
+	<script type="text/javascript" src="js/easyXDM/easyXDM.min.js"></script>
+    <script type="text/javascript" src="js/easyXDM/json2.js"></script>
+	<script type="text/javascript" src="js/cp_login_validation.js"></script>
+    <script type="text/javascript" src="js/consumerLogin.js"></script>
+    <script type="text/javascript" src="js/cp_forgot_pwd.js"></script>
+    <script type="text/javascript" src="landingassets/js/bootstrap.min.js"></script>
+
+	 <script>
+		$(document).ready(function(){
+			 $("#myCarousel").carousel({
+				 interval : false
+			 });
+		});
+    </script>
+	
+    <script type="text/javascript">
+	
+	function resetSignupForm()
+    {
+        $("#signupform").find(".ui-common-field-error").removeClass("ui-common-field-error");
+        $("#signupform").find(".status").html("");
+//        $('#companyname').val("");
+        $('#director1_name').val("");
+        $('#mobile').val("");
+        $('#password').val("");
+        $('#username').val("");
+        $("#signup-error").html("").hide();
+//        $('#check_password').val("");
+        $("#signup-spinner").hide();
+    }
+	
+        $(function() {
+            $("#signup-citrus").click(function(){
+                resetSignupForm();
+                $('body').css('overflow','hidden');
+            });
+			
+			$('.merchant_link_popup').hide();
+            $("#loginLink").click(function(){
+                signInType = "MERCHANT";
+                $("#loginTitle").html("Merchant Log In");
+                $("#loginForm").find(".ui-common-field-error").removeClass("ui-common-field-error");
+                $("#loginForm").find(".status").html("");
+                $("#loginForm").find("input[type=text],input[type=password], textarea").val("");
+                $("#login-error").html("").hide();
+				$('.merchant_link_popup').show();
+
+            });
+
+            $("#consumerLink").click(function(){
+                signInType = "CONSUMER";
+                $("#loginTitle").html("Consumer Log In");
+                $("#loginForm").find(".ui-common-field-error").removeClass("ui-common-field-error");
+                $("#loginForm").find(".status").html("");
+                $("#loginForm").find("input[type=text],input[type=password], textarea").val("");
+                $("#login-error").html("").hide();
+				$('.merchant_link_popup').hide();
+
+            });
+
+        });
+    </script>
+	<script>
+	  var signupValidator;
+    var isConsumerValid;
+    function signupValidatorFunction ()
+    {
+     $("#signup-spinner").show();
+    console.log("signupValidatorFunction called");
+        var		formNameStr				= "signupform";
+        var		errorContainerStr 		= "div-Form-Errors-signupform";
+        var		errorTitleSpanStr		= "span-ErrorTitle-signupform";
+
+        $("#" + formNameStr + " .ui-common-field-error" ).removeClass("ui-common-field-error");
+        $("#" + formNameStr + " .status").html("");
+        console.log("signupValidatorFunction 1");
+        signupValidator = $("#" + formNameStr).validate(
+                {
+                    onfocusout:	false,
+                    onkeyup:	false,
+                    onclick:	false,
+                    focusInvalid: false,
+
+
+                    errorContainer: "#" + errorContainerStr,
+
+                    // the errorPlacement has to take the table layout into account
+                    errorPlacement: function(error, element) {
+                        error.appendTo( element.parent().find(".status") );
+                    },
+
+                    highlight:	function(element, errorClass, validClass) {
+
+                        var $element = $(element);
+                        $element.addClass("ui-common-field-error");
+                    },
+
+                    unhighlight: function(element, errorClass, validClass) {
+
+                        var $element = $(element);
+                        $element.removeClass("ui-common-field-error");
+                        if(isConsumerValid){
+                            $("#signup-spinner").children("span").hide();
+                            $("#username").addClass("ui-common-field-error");
+                        }
+                    },
+
+                    invalidHandler:	function() {
+
+                        var	errorCount = signupValidator.numberOfInvalids();
+                        var errorString =
+                                ''
+                                + '<label class="ui-common-label-error">'
+                                + 'Please correct the following '
+                                + (errorCount == 1 ? 'error ' : (errorCount + ' errors '))
+                                + 'highlighted below.'
+                                + '</label>';
+
+                        $("#" + errorTitleSpanStr).html(errorString);
+
+                    }, // invalidHandler
+
+                    rules : {
+                        username: {
+                            required: true,
+                            email: true,
+                            checkIfUsernameIsAvailable: true
+                        },
+                        mobile: {
+                            required: true,
+                            digits: true,
+                            minlength: 10,
+                            maxlength: 10,
+                            customMobileNumberValidation: true,
+                            checkIfMobileNumberIsAvailable: true
+                        },
+
+                        director1_name : {
+                            required: true,
+                            maxlength: 50
+                        },
+//                        companyname : {
+//                            required: true,
+//                            maxlength : 50
+//                        },
+                        password: {
+                            required: true,
+                            minlength: 6,
+                            customPasswordPattern: false
+                        },
+//                check_password: {
+//                    required: true,
+//                    equalTo: "#password"
+//                },
+                pseudo_validator : {
+                    customSignUpValidator : true
+                        }
+                    },
+                    messages : {
+                        username: {
+                            required: 'The email address is required.',
+                            email: 'Please enter a valid email id.',
+                            checkIfUsernameIsAvailable: 'An account with this email address already exists. Click <a href=\'javascript:openLoginPage()\',   style="text-decoration: underline;">here</a> to login'
+
+                        },
+
+                director1_name : {
+                    required : 'Full name is required',
+                    maxlength : 'You have exceeded the maximum length of 50 characters'
+                },
+                
+                mobile: {
+                    required: 'Mobile number is required',
+                    digits: 'Enter a valid phone number.',
+                    minlength: 'Enter a valid phone number.',
+                    maxlength: 'Enter a valid phone number.'
+                },
+                password: {
+                    required: 'Password is required',
+                    customPasswordPattern: 'Enter a password with at least 1 capital letter, 1 small letter and 1 number and 1 special character.'
+                },
+//                check_password: {
+//                    required: 'Password confirmation is required',
+//                    equalTo: 'Passwords should match.'
+//                },
+//                companyname :{
+//                    required : 'Company name is required',
+//                    maxlength : 'You have exceeded the maximum length of 50 characters'
+//                },
+                pseudo_validator :{
+                    customSignUpValidator : 'Could not create merchant account.'
+                }
+            },
+             success: function(label) {
+                        var name = label.attr('for');
+                        console.log(name);
+
+                        if(name=="username"){
+                            isConsumerValid = isConsumerForSignUp();
+                            if(isConsumerValid){
+//                          var consumerObj={};
+                                $("#signup-spinner").hide();
+//                                $("#username").removeClass("block input");
+//                                $("#username").addClass("block");
+//                                $("#username").addClass("input");
+
+//                                $("#username").addClass("ui-common-field-error");
+                                label.parent('span').html("<label>Consumer with this username exists! Click <a href='javascript:submitToConsumerPage()'  style=\"text-decoration: underline;\">here</a> for consumer login.</label>");
+                            }
+                        }
+                    }
+                }); // validate
+        console.log("signupValidatorFunction signupValidator.form()");
+
+        return signupValidator.form()
+
+    } // END: signupValidatorFunction
+
+
+    var currentSignUpStatus;
+
+    function customSignUpValidator()
+    {
+     $("#signup-spinner").show();
+        var userEnteredData = {
+            username : $("#username").val(),
+            password : $("#password").val(),
+//            companyname : $("#companyname").val(),
+            mobile : $("#mobile").val(),
+            director1_name : $("#director1_name").val(),
+            dummy: new Date().getTime()
+        };
+
+        /* Check if new username exists in the database*/
+        var responseJSON;
+
+        $.ajaxSetup({async: false});
+        if(!isConsumerValid) {
+        $.getJSON( 'https://mob.citruspay.com/citrus-mob/MOB/ajaxSignUp', userEnteredData, function( data ) {
+            responseJSON = data;
+            currentSignUpStatus = data.signUpStatus;			
+        });
+        }else{
+
+        }
+		console.log(getDateTime());
+        $.ajaxSetup({async: true});
+        return responseJSON.signUpStatus;
+
+    }
+
+	function getDateTime() {
+    var now     = new Date(); 
+    var year    = now.getFullYear();
+    var month   = now.getMonth()+1; 
+    var day     = now.getDate();
+    var hour    = now.getHours();
+    var minute  = now.getMinutes();
+    var second  = now.getSeconds(); 
+    if(month.toString().length == 1) {
+        var month = '0'+month;
+    }
+    if(day.toString().length == 1) {
+        var day = '0'+day;
+    }   
+    if(hour.toString().length == 1) {
+        var hour = '0'+hour;
+    }
+    if(minute.toString().length == 1) {
+        var minute = '0'+minute;
+    }
+    if(second.toString().length == 1) {
+        var second = '0'+second;
+    }   
+    var dateTime = year+'/'+month+'/'+day+' '+hour+':'+minute+':'+second;   
+     return dateTime;
+}
+
+    var processSignupRequest = function(e)
+    {
+
+        $("#signup-spinner").show();
+        $("#signup-error").html("").hide();
+            console.log("processSignupRequest call");
+        if(checkNetworkConnection() && signupValidatorFunction()) {
+            console.log("if signupValidatorFunction");
+
+            currentSignUpStatus = customSignUpValidator();
+
+            console.log("currentSignUpStatus "+currentSignUpStatus);
+       //     if(currentSignUpStatus) {
+
+//			 console.log("redirect to welcomeOnBoard");
+//                window.location.href = 'https://mob.citruspay.com/citrus-mob/MOB/welcomeOnBoard';
+//                return true;
+
+
+				var mobRPC = new easyXDM.Rpc(
+					{
+						remote: "https://mob.citruspay.com/citrus-mob/login/easyXDMInit.gsp"
+					},
+					{
+						remote: {
+							request: {}
+						}
+					}
+				);
+
+
+				mobRPC.request({
+					url: 'https://mob.citruspay.com/citrus-mob/login/loginAjax',
+					method: "POST",
+					data:   {
+						username : $("#username").val(),
+						password: $("#password").val(),
+						dummy: new Date().getTime(),
+						ifCPLogin: false
+					},
+					timeout: 300000
+				}, 
+			
+				function(response){
+
+					var mobResponse = JSON.parse(response.data);
+
+					console.log('mobResponse'+mobResponse);
+
+					if(mobResponse.successfullyLoggedIn == true && mobResponse.useCPLoginMechanism == false) {
+
+						// Log in the user into MOB
+						window.location = mobResponse.redirectURL;
+						return true;
+					} else if(mobResponse.useCPLoginMechanism){
+
+						// Log in the user into Admin site
+						submitLogin();
+					} else{
+
+						// Prompt the user that the user credentials are incorrect
+						$("#login-spinner").hide();
+						$("#login-error").html("Invalid username or password.").show();
+						return false;
+					}
+
+				},
+				
+				function(error){
+					// If the MOB call fails, then delegate the call to the Admin site
+					submitLogin();
+				});
+
+
+
+
+
+//                console.log("redirect to welcomeOnBoard  ");
+//				 $.ajaxSetup({async: false});
+//				 window.location.href = 'https://mob.citruspay.com/citrus-mob/MOB/welcomeOnBoard';	
+//				 
+//				var mobRPC = new easyXDM.Rpc({
+//					remote: "https://mob.citruspay.com/citrus-mob/login/easyXDMInit.gsp"
+//				},
+//				{
+//					remote: {
+//						request: {}
+//					}
+//				});
+//
+//
+//				mobRPC.request({
+//                url: 'https://mob.citruspay.com/citrus-mob/login/loginAjax',
+//                method: "POST",
+//                data:   {
+//                    username : $("#username").val(),
+//                    password: $("#password").val(),
+//                    dummy: new Date().getTime(),
+//                    ifCPLogin: false
+//                },
+//                timeout: 300000
+//            }, function(response){
+//
+//                var mobResponse = JSON.parse(response.data);
+//                console.log('mobResponse'+mobResponse);
+//                if(mobResponse.successfullyLoggedIn == true && mobResponse.useCPLoginMechanism == false) {
+//
+//                    // Log in the user into MOB
+//                    window.location = mobResponse.redirectURL;
+//                    return true;
+//                } else if(mobResponse.useCPLoginMechanism){
+//
+//                    // Log in the user into Admin site
+//                    submitLogin();
+//                } else{
+//
+//                    // Prompt the user that the user credentials are incorrect
+//                    $("#login-spinner").hide();
+//                    $("#login-error").html("Invalid username or password.").show();
+//                    return false;
+//                }
+//            }, function(error){
+//
+//                // If the MOB call fails, then delegate the call to the Admin site
+//                submitLogin();
+//            });
+//				console.log('redirect-url');
+//                window.location.assign = 'https://mob.citruspay.com/citrus-mob/MOB/welcomeOnBoard';				
+//                $("#signup-error").hide();				
+//                return true;				
+//            } else {
+//                $("#signup-spinner").hide();
+//                $("#signup-error").html("Sorry we were unable to create account.").show();
+//                console.log("redirect to logout");
+//                window.location.href = 'https://mob.citruspay.com/citrus-mob/logout/logout';
+//                return false;
+//            }
+        }
+        else
+        {
+            $("#signup-spinner").hide();
+            return false;
+        }
+    }; // END: processSignupRequest function
+
+    $(function() {
+
+        jQuery.validator.addMethod("customPasswordPattern", function(value, element) {
+            console.log("customPasswordPattern called");
+            var customPasswordPatternRegEx = /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{6,20}$/;
+            return this.optional(element) || customPasswordPatternRegEx.test(value);
+        }, "Please enter a password that has at least one capital character and one number");
+
+        jQuery.validator.addMethod("noSpaces", function(value, element) {
+            console.log("noSpaces called");
+            var customPasswordPatternRegEx = /\s/;
+            return this.optional(element) || !customPasswordPatternRegEx.test(value.trim());
+        }, "No spaces allowed");
+
+
+        /* Check if username is available or not */
+        $.validator.addMethod("checkIfUsernameIsAvailable", function(value, element) {
+            console.log("checkIfUsernameIsAvailable called");
+            var userEnteredData = {
+                username : $(element).val(),
+                dummy: new Date().getTime()
+            };
+
+            /* Check if new username exists in the database*/
+            var responseJSON;
+
+            $.ajaxSetup({async: false});
+            $.getJSON( 'https://mob.citruspay.com/citrus-mob/router/isUsernameUnique', userEnteredData, function( data ) {
+                responseJSON = data;
+            });
+            $.ajaxSetup({async: true});
+
+            return responseJSON.proceedWithAccountCreation;
+        }, "Username already exists.");
+
+
+        /* Check if mobile number is available or not */
+        $.validator.addMethod("checkIfMobileNumberIsAvailable", function(value, element) {
+            console.log("checkIfMobileNumberIsAvailable called");
+            var userEnteredData = {
+                mobile : $(element).val(),
+                dummy: new Date().getTime()
+            };
+
+            /* Check if new mobile exists in the database*/
+            var responseJSON;
+
+            $.ajaxSetup({async: false});
+            $.getJSON( 'https://mob.citruspay.com/citrus-mob/router/isMobileNumberUnique', userEnteredData, function( data ) {
+                responseJSON = data;
+            });
+            $.ajaxSetup({async: true});
+
+            if(responseJSON.maskedEmailAddress != "")
+            {
+                $.validator.messages.checkIfMobileNumberIsAvailable = "This number is already associated with the "+responseJSON.maskedEmailAddress +" email address.";
+            } else {
+                $.validator.messages.checkIfMobileNumberIsAvailable = 'An account with this phone number already exists.';
+            }
+
+            return responseJSON.proceedWithAccountCreation;
+        }, $.validator.messages.checkIfMobileNumberIsAvailable);
+
+        $.validator.addMethod("customMobileNumberValidation", function (value, element) {
+            console.log("customMobileNumberValidation called");
+            var mobileNo = $(element).val();
+
+            var customNumberRegx = /^[789][0-9]{9}$/;
+            console.log("Call this " + mobileNo + "    ====> valid " + customNumberRegx);
+            return this.optional(element) || customNumberRegx.test(mobileNo);
+        }, "Enter a valid phone number.");
+
+        /* Trigger form validations */
+
+//        $('#signupSubmit').click(processSignupRequest);
+        $('#signupSubmit').off().on("click", processSignupRequest);
+        console.log("processSignupRequest called");
+        $('form[name=signupform]').bind("reset", function(event) {
+            $("#signupform").find(".ui-common-field-error").removeClass("ui-common-field-error");
+            signupValidator.resetForm();
+        });
+
+    });
+
+    function checkNetworkConnection() {
+        var status = navigator.onLine;
+        $("#signup-error").html("").hide();
+        if(!status) {
+            $("#signup-spinner").hide();
+            $("#signup-error").html("Sorry we were unable to create account as you are not connected to network.").show();
+            return false;
+        }
+        return true;
+    }
+
+    function resetSignupForm()
+    {
+        $("#signupform").find(".ui-common-field-error").removeClass("ui-common-field-error");
+        $("#signupform").find(".status").html("");
+//        $('#companyname').val("");
+        $('#director1_name').val("");
+        $('#mobile').val("");
+        $('#password').val("");
+        $('#username').val("");
+        $("#signup-error").html("").hide();
+//        $('#check_password').val("");
+        $("#signup-spinner").hide();
+    }
+
+    function openLoginPage()
+    {
+        $(".js-close-modal").trigger("click");
+        $("#loginLink").trigger("click");
+        $("#txt_username").val($("#username").val());
+    }
+    
+  function isConsumerForSignUp()
+  {
+      var userEnteredData = {
+          username : $("#username").val()
+      };
+
+      /* Check if new username exists in the database*/
+      var responseJSON;
+
+      $.ajaxSetup({async: false});
+      $.getJSON( 'https://mob.citruspay.com/citrus-mob/MOB/isConsumer', userEnteredData, function( data ) {
+          responseJSON = data;
+      });
+      $.ajaxSetup({async: true});
+      console.log("isConsumerForSignUp:- responseJSON:- "+ responseJSON);
+
+      return responseJSON;
+  }
+
+    function submitToConsumerPage(){
+        var consumerObj = {
+            mobile : $("#mobile").val(),
+            username : $("#username").val(),
+            director1_name : $("#director1_name").val(),
+            password : $("#password").val()
+        };
+        console.log(consumerObj.username);
+        $("#cons_director1_name").val(consumerObj.director1_name);
+        $("#cons_mobile").val(consumerObj.mobile);
+        $("#cons_username").val(consumerObj.username);
+        $("#cons_password").val(consumerObj.password);
+
+        $("#consumerForm").submit();
+    }
+	</script>
+
+    <script>
+        $(window).scroll(function() {
+            $('#quickSingUP').each(function(){
+                var imagePos = $(this).offset().top;
+
+                var topOfWindow = $(window).scrollTop();
+                if (imagePos < topOfWindow+400) {
+                    var $post = $("#quickSingUP");
+                    setInterval(function(){
+                        $post.toggleClass("pulse");
+                    }, 8000);
+                    var $post1 = $("#copyPaste");
+                    setInterval(function(){
+                        $post1.toggleClass("pulse");
+                    }, 6000);
+                    var $post2 = $("#youDone");
+                    setInterval(function(){
+                        $post2.toggleClass("pulse");
+                    }, 4000);
+                }
+            });
+        });
+
+
+        $(window).scroll(function() {
+            $('#arrowAnim,#arrowAnim1').each(function(){
+                var imagePos = $(this).offset().top;
+
+                var topOfWindow = $(window).scrollTop();
+                if (imagePos < topOfWindow+400) {
+                    var $post = $("#arrowAnim");
+                    setInterval(function(){
+                        $post.toggleClass("strechRight");
+                    }, 4000);
+                }
+            });
+        });
+    </script>
+
+	<!-- Google code for analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+					(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+		ga('create', 'UA-33514461-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+
+<!-- Google code for remarketing tag -->
+	<script type="text/javascript">
+	/* <![CDATA[ */
+	var google_conversion_id = 978612462;
+	var google_custom_params = window.google_tag_params;
+	var google_remarketing_only = true;
+	/* ]]> */
+	</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+<noscript>
+	<div style="display:inline;">
+		<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/978612462/?value=0&amp;guid=ON&amp;script=0"/>
+	</div>
+</noscript>
+
+<script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName("script")[0];
+a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0047/5788.js?"+Math.floor(new Date().getTime()/3600000);
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+
+</head>
+<body id="homepage">
+<header class="header main-container" style="background:none !important;">
+    <div class="container">
+        <div class="header-wrapper">
+            <div class="top-header grid-full mb-60 phn-mb-30" style="padding-top:10px">
+                <div class="top-header-content">
+                    <div class="block-left">
+                        <a class="logo fl hide-text phn-ma mr-30" href="http://www.citruspay.com/" onclick="ga('send', 'event', 'HomePage', 'Header', 'Logo');"></a>
+                        <a class="mob-menu" href="#">
+                            <span class="mob-menu-text">Menu</span>
+                            <i class="menu-icon icon-hamburger fa fa-bars"></i>
+                            <i class="menu-icon icon-close fa fa-times"></i>
+                        </a>
+                        <div class="clr"></div>
+                    </div>
+                    <ul class="nav-menu ml-100 phn-tab-ml-0 phn-tab-pt-0" style="border-bottom:none !important;">
+                      <li class="fr phn-tab-fn"><a class="menu_links omega" href="http://blog.citruspay.com/" onclick="ga('send', 'event', 'HomePage', 'Header', 'Blog');">Blog</a></li>
+                        <li class="fr phn-tab-fn"><a class="menu_links sign-in-pop omega" id="loginLink" loginType="merchnt_login" href="https://mob.citruspay.com/citrus-mob/login/mobileSignInPage" onclick="ga('send', 'event', 'Header', 'HomePage', 'MerchantLoginLogin');">Merchant Login</a></li>
+                        <li class="fr phn-tab-fn"><a class="menu_links sign-in-pop omega" loginType="consumer_login" id="consumerLink" href="https://mob.citruspay.com/citrus-mob/login/mobileConsumerSignInPage" onclick="ga('send', 'event', 'Header', 'HomePage', 'ConsumerLogin');">Consumer Login</a></li>
+                      
+                        <div class="clr"></div>
+                    </ul>
+                    <div class="clr"></div>
+                </div>
+            </div>
+            
+            
+            <div class="clr"></div>
+        </div>
+
+    </div>
+</header>
+
+<div class="modal-overlay js-close-modal"></div>
+
+
+<!-- Signin / signup iframe -->
+
+    <div class="modal modal-consumer-sign-up">
+        <a class="btn-close-signin js-close-modal"></a>
+  <iframe id="iFrameSignUp" src="https://consumer.citruspay.com/CitrusConsumerPortal/login/signup" width="725" height="550" 
+  ></iframe>
+    </div>
+	
+<!-- 	<div class="modal modal-merchant-sign-up">
+        <a class="btn-close-signin js-close-modal"></a>
+  <iframe id="iFrameSignUp1" src="https://mob.citruspay.com/citrus-mob/login/mobileSignupPage" width="725" height="550" 
+  ></iframe>
+    </div> -->
+	
+   <div class="modal modal-sign-in">
+    <a class="btn-close-signin js-close-modal"></a>
+    <div class="sign-in-form">
+        <form class="sign-in" name="loginForm" id="loginForm">
+            <h3 class="title switchTitle medium bold ta-c color-black">Log In</h3>
+            <ul class="login-container ac-container" style="list-style-type: none;">
+                <li>
+                    <label class="width-grid-one ma block color-black bold mt-20 mb-5">Email</label>
+                    <input class="width-grid-one ma block input evnt_username" name="username" autocomplete="off" id="txt_username" type="text">
+                    <div class="error-block"><span class="status"></span></div>
+                </li>
+                <li>
+                    <label class="width-grid-one ma block color-black bold mt-30 mb-5">Password</label>
+                    <input class="width-grid-one ma block input evnt_password" name="password" autocomplete="off" type="password" id="txt_password">
+                    <div class="error-block"><span class="status"></span></div>
+                </li>
+            </ul>
+            
+            <div class="error-block" id="login-error" style="display: none"> </div>
+
+            <div id="login-spinner" class="spinner" style="display:none; text-align: center; line-height: 40px;position: absolute;width: 100%;margin: -14px 0 0 0;">
+                <span style="text-align: center; color: #f7941e; padding-left:17px; margin-bottom:20px">Please wait while we log you in.<img src="https://mob.citruspay.com/citrus-mob/assets/spinner-c7b3cbb3ec8249a7121b722cdd76b870.gif" alt="Spinner" /></span>
+                <br/>
+            </div>
+
+            <div class="width-grid-one ma mt-30">
+				<!-- <span><a href="">Sign up as consumer</span> -->
+				<a class="forgot-pass color-grey fl btn-help" id="lnk-forgotpass" onclick="ga('send', 'event', 'ForgotPasswordClick', 'HomePage', 'MerchantForgotPassword');">Forgot Password?</a>
+                <input  id="login_submit" name="loginsubmit" class="submitbutton orange-button submit fr" type="button" onclick="ga('send', 'event', 'MerchantLoginClick', 'HomePage', 'Login');" value="Sign In" />  
+				<a style="clear:both;cursor:pointer;" class="color-black fl btn-help mt-20 sign-up-pop-consumer" id="consumerSignup" href="https://consumer.citruspay.com/CitrusConsumerPortal/login/signup" onclick="ga('send', 'event', 'MerchantLoginClick', 'HomePage', 'NewUserSignUp');">New User? Sign Up</a>
+				<a style="clear:both;cursor:pointer;" class="color-black fl btn-help mt-20 merchant_link_popup sign-up-pop-merchant" id="merchantSignUp">Sign Up as Merchant</a>
+                <div class="clr"></div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="modal modal-forgot-pass" id="noMailIdPopup">
+    <a class="btn-close-signin js-close-modal"></a>
+    <div class="forgot-pass-form ta-c">
+        <form class="forgot-pass-in form-horizontal" name="resetPasswordForm" id="resetPasswordForm" >
+            <h3 class="title medium bold color-black mb-30">Forgot your password?</h3>
+
+            <p>Enter the email address you used when you created your Citrus account.</p>
+            <p class="mb-30">We'll email you a link to a page where you can easily create a new password.</p>
+            <label class="width-grid-one ma ta-l block color-black bold mb-5">Email address</label>
+
+            <input class="width-grid-one ma block input" id="resetPasswordEmailId" name="resetPasswordEmailId" autofocus>
+
+            <div class="error-block" id="errorMsg">
+                <span class="status"></span>
+            </div>
+
+            
+
+            <div id="submitDiv" class="ta-c mt-30">
+                <button id="forgot_submit" class="orange-button submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal modal-forgot-pass-in">
+    <a class="btn-close-signin js-close-modal"></a>
+    <div class="forgot-pass-form ta-c">
+        <form class="forgot-pass-in" action="" method="POST">
+            <h3 class="title medium bold color-black mb-30">Success!</h3>
+            <p>A password reset link has been sent to you if you have an account with Citrus Pay.</p>
+            <p class="mt-20 mb-20">In case you don't receive an email from us, please check your spam/junk/bulk mail folder. If you still don't have an email, check that the email address you have provided actually has a registered account with us.</p>
+            <p>If you do have an account and don't receive an email, write to us at <b>support@citruspay.com</b></p>
+            <div class="ta-c mt-30">
+                <input class="orange-button" type="button" id="ok" value="OK" style="border:none;">
+            </div>
+        </form>
+    </div>
+</div>
+
+		<div class="onlyConsumer" id="onlyConsumerPopup">         
+           <p>Please use Consumer Login to access your Citrus Account.</p>
+           <button id="idProofButton" class="orange-button submit mt-20">OK</button>         
+        </div>
+		
+        <div class="instructions-overlay" id="overlay"></div>
+        
+<div class="modal modal-sign-up merchant_modal">
+    <a class="btn-close-signin js-close-modal"></a>
+    <div class="sign-up-form">
+        
+        <form id="signupform" name="signupform">
+            <h3 class="title medium color-black ta-c">Signup as Merchant</h3>
+            <div class="title small ta-c">And experience the difference</div>
+            <div class="grid-half mt-10">
+                <div class="grid-half-signup">
+
+                    <ul class="login-container1 ac-container1" style="list-style-type: none;">                      
+                        <li>
+                            <label class="block color-black bold mt-20 mb-5">Full Name <span class="required">*</span></label>
+
+                            <input class="block input" type="text" id="director1_name" name="director1_name">
+                            <div class="error-block"><span class="status"></span></div>
+                        </li>
+                        <li>
+                            <label class="block color-black bold mt-20 mb-5">Mobile No. <span class="required">*</span></label>
+
+                            <input class="block input" type="text" id="mobile" maxlength="10" name="mobile">
+                            <div class="error-block"><span class="status"></span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="width-grid-one fr mt-10">
+                <ul class="login-container1 ac-container1" style="list-style-type: none;">
+                    <li>
+                        <label class="block color-black bold mt-20 mb-5" for="username">Email Address <span class="required">*</span></label>
+
+                        <input class="block input" type="text" id="username" name="username">
+                        <div class="error-block"><span class="status"></span></div>
+                    </li>
+                    <li>
+                        <label class="block color-black bold mt-20 mb-5">Password  <span class="required">*</span></label>
+
+                        <input class="block input" type="password" name="password" id="password">
+                        <div class="error-block"><span class="status"></span></div>
+                    </li>                   
+                </ul>
+            </div>
+
+            <div id="signup-spinner" class="spinner" style="display:none; text-align: center; line-height: 40px; clear:both">
+                <span style="text-align: center; color: #f7941e; padding-left:17px; margin-bottom:20px">Please wait while we create your account.<img src="images/spinner-c7b3cbb3ec8249a7121b722cdd76b870.gif" alt="Spinner" /></span>
+                </br>
+            </div>
+
+
+            <div class="width-grid-one ma mt-30">
+                <input class="orange-button submit signup-submit mt-30" id="signupSubmit" type="button" value="Create merchant account" onclick="ga('send', 'event', 'Home', 'HomePage', 'SignUpAsMerchant');">
+                <div class="clr"></div>
+                <div class="error-block" id="signup-error" style="display: none"> </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+<div class="modal modal-signup-success">
+    <a class="btn-close-signin js-close-modal"></a>
+    <div class="forgot-pass-form ta-c">
+        <form class="forgot-pass-in" action="" method="POST">
+            <h3 class="title medium bold color-black mb-30">Thank You</h3>
+            <p>Our Sales team will get in touch with you shortly.</p>
+            <div class="ta-c mt-30">
+                <input class="orange-button okSignUp" type="button" id="ok-signup" value="OK" style="border:none;">
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+	$('#merchantSignUp').click(function(){
+		$('.merchant_modal').addClass('show');
+		$('.modal-sign-in').removeClass('show');
+	})
+</script>
+
+
+<!-- Signin / signup iframe -->
+
+
+<div class="container-fluid nopadding">
+        <div class="container">    
+            <section id="top-section">
+            	<div class="col-lg-10 col-lg-offset-1  col-md-12 col-sm-12 col-xs-12 nopadding">
+                	<div class="box-section">
+                    	<div class="box-img">
+                        	<img src="landingassets/images/consumers_icon.png" alt="consumer icon">
+                            <h1><p class="boximg-title">Your Citrus Wallet</p></h1>
+                        </div>
+                        <div class="box-title">
+                        	The slickest way to pay<br>with your mobile
+                        </div>
+                        <div class="box-button">
+                        	<a href="consumers.html" class="btn-knowmore" title="know more" onclick="ga('send', 'event', 'HomePage', 'CitrusWallet', 'FindOutHow');">Find out how</a>
+                        </div>
+                    </div>
+                    <div class="box-section">
+                    	<div class="box-img">
+                        	<img src="landingassets/images/merchants_icon.png" alt="merchants icon">
+                            <h1><p class="boximg-title">Payment Solutions for your Business</p></h1>
+                        </div>
+                        <div class="box-title">
+                        	The best payment stack <br> for your business
+                        </div>
+                        <div class="box-button">
+                        	<a href="http://www.citruspay.com/merchants/" class="btn-knowmore" title="know more" onclick="ga('send', 'event', 'HomePage', 'PaymentSolutionsForBusiness', 'KnowMore');">know more</a>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="clearfix"></div>
+            </section>
+             <div class="clearfix"></div>
+       </div>
+      <div class="clearfix"></div>
+            <section id="bottom-section">
+            	<div class="container">
+                    <div class="col-lg-10 col-lg-offset-1  col-md-12 col-sm-12 col-xs-12 pageslider">
+                        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                            <!-- Carousel indicators -->
+                         <!--   <ol class="carousel-indicators">
+                                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                <li data-target="#myCarousel" data-slide-to="1"></li>
+                              
+                            </ol> -->  
+                            <!-- Wrapper for carousel items -->
+                            <div class="carousel-inner">
+                           
+                                <div class="item active">
+                                    <a class="desktopview" href="consumers.html#citrus_cash" onclick="ga('send', 'event', 'HomePage', 'Bottom', 'CitrusWalletStrip');"><img src="landingassets/images/slider_image.jpg" alt="Citrus Wallet"></a>
+                                    <a class="mobileview" href="consumers.html#citrus_cash" onclick="ga('send', 'event', 'HomePage', 'Bottom', 'CitrusWalletStrip');"><img src="landingassets/images/slider_image_m.jpg" alt="Citrus Wallet"></a>
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                <div class="clearfix"></div>
+                <footer>
+                	<div class="footer-wrapper pt-40 pb-40">
+       
+                <div class="grid-two-third alpha tab-grid-half-2 phn-grid-full phn-mb-20">
+                    <div class="footer-menu menu-small">
+                        <ul>
+                            <li><a href="media-press.html" onclick="ga('send', 'event', 'Footer', 'HomePage', 'MediaAndPress');">Media &amp; Press</a></li>
+                            <li><a href="about-us.html" onclick="ga('send', 'event', 'Footer', 'HomePage', 'AboutUs');">About Us</a></li>
+                            <li><a href="careers.html" onclick="ga('send', 'event', 'Footer', 'HomePage', 'Careers');">Careers</a></li>
+                            <li><a href="http://offers.citruspay.com/" onclick="ga('send', 'event', 'Footer', 'HomePage', 'Offers');" >Offers</a></li>
+							<li><a href="citruscashfaqs.html" onclick="ga('send', 'event', 'Footer', 'HomePage', 'WalletFaq');">Wallet FAQ</a></li>
+							<li><a href="citrus-privacypolicy.html">Privacy Policy</a></li>
+							<li><a href="contact-us.html" onclick="ga('send', 'event', 'Footer', 'HomePage', 'ContactUs');">Contact Us</a></li>
+							<li><a href="grievance-policy.html" onclick="ga('send', 'event', 'Footer', 'HomePage', 'GrievancePolicy');">Grievance Policy</a></li>
+							<li><a href="http://developers.citruspay.com/index.html" onclick="ga('send', 'event', 'Footer', 'MerchantPage', 'DeveloperGuide');">Developer's Guide</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid-one-third omega tab-grid-full phn-grid-full copyright">
+                   <div class="color-grey" style="font-size:11px;">&copy; Citrus Payment Solutions PTE &nbsp&nbsp&nbsp
+				   <span class="social-icon-span">
+					<a href="http://www.twitter.com/citruspay" target="_blank"><img class="social-icon" width="32" height="32" src="images/twitter.png" alt="Twitter" /></a>
+					<a href="https://www.facebook.com/Citruspay" target="_blank"><img class="social-icon" width="36" height="36" src="images/facebook.png" alt="Facebook" /></a>
+					<a href="https://www.linkedin.com/company/citrus-pay/" target="_blank"><img class="social-icon" width="34" height="34" src="images/linkedin.png" alt="linkedin" /></a>
+					</span>
+					</div>
+                </div>
+                <div class="clr"></div>
+            </div>
+                    <div class="clearfix"></div>
+            	</footer>
+                </div>
+            </section>
+        </div>
+
+<!-- Footer 
+<footer class="footer main-container mt-30 mb-60">
+        <div class="container pb-18">
+            <div class="hr"></div>
+            
+        </div>
+    </footer> 
+	<!-- Footer -->
+    <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+    </script>
+    <noscript>
+        <div style="display:inline;">
+            <img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/978612462/?value=0&amp;guid=ON&amp;script=0"/>
+        </div>
+    </noscript>
+
+</body>
+</html>
