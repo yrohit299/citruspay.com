@@ -28,7 +28,7 @@
     <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="js/jquery.validate.min.js"></script>
 	<script type="text/javascript" src="js/jquery.validate.js"></script>
-	<script type="text/javascript" src="js/custom.js"></script>
+	
 	<script type="text/javascript" src="js/jquery-migrate-1.2.1.js"></script>
 	<script type="text/javascript" src="js/jquery-impromptu.4.0.min.js"></script>
 	<script type="text/javascript" src="js/jquery.tipsy.js"></script>
@@ -81,7 +81,7 @@
 
             });
 
-            $("#consumerLink").click(function(){
+        /*     $("#consumerLink").click(function(){
                 signInType = "CONSUMER";
                 $("#loginTitle").html("Consumer Log In");
                 $("#loginForm").find(".ui-common-field-error").removeClass("ui-common-field-error");
@@ -90,7 +90,7 @@
                 $("#login-error").html("").hide();
 				$('.merchant_link_popup').hide();
 
-            });
+            }); */
 
         });
     </script>
@@ -678,12 +678,14 @@ a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0047/5788.
 a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
 </script>
 
+<script type="text/javascript" src="js/custom.js"></script>
+
 </head>
 <body id="homepage">
 <header class="header main-container" style="background:none !important;">
     <div class="container">
         <div class="header-wrapper">
-            <div class="top-header grid-full mb-60 phn-mb-30" style="padding-top:10px">
+            <div class="top-header grid-full mb-60 phn-mb-30" style="padding-top:30px">
                 <div class="top-header-content">
                     <div class="block-left">
                         <a class="logo fl hide-text phn-ma mr-30" href="http://www.citruspay.com/" onclick="ga('send', 'event', 'HomePage', 'Header', 'Logo');"></a>
@@ -697,7 +699,7 @@ a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
                     <ul class="nav-menu ml-100 phn-tab-ml-0 phn-tab-pt-0" style="border-bottom:none !important;">
                       <li class="fr phn-tab-fn"><a class="menu_links omega" href="http://blog.citruspay.com/" onclick="ga('send', 'event', 'HomePage', 'Header', 'Blog');">Blog</a></li>
                         <li class="fr phn-tab-fn"><a class="menu_links sign-in-pop omega" id="loginLink" loginType="merchnt_login" href="https://mob.citruspay.com/citrus-mob/login/mobileSignInPage" onclick="ga('send', 'event', 'Header', 'HomePage', 'MerchantLoginLogin');">Merchant Login</a></li>
-                        <li class="fr phn-tab-fn"><a class="menu_links sign-in-pop omega" loginType="consumer_login" id="consumerLink" href="https://mob.citruspay.com/citrus-mob/login/mobileConsumerSignInPage" onclick="ga('send', 'event', 'Header', 'HomePage', 'ConsumerLogin');">Consumer Login</a></li>
+                        <li class="fr phn-tab-fn"><a class="menu_links sign-in-pop omega" loginType="consumer_login" id="consumerLink" href="https://consumer.citruspay.com/CitrusConsumerPortal/" onclick="ga('send', 'event', 'Header', 'HomePage', 'ConsumerLogin');">Consumer Login</a></li>
                       
                         <div class="clr"></div>
                     </ul>
@@ -934,11 +936,11 @@ a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
                     <div class="col-lg-10 col-lg-offset-1  col-md-12 col-sm-12 col-xs-12 pageslider">
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
                             <!-- Carousel indicators -->
-                         <!--   <ol class="carousel-indicators">
+                            <ol class="carousel-indicators">
                                 <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
                                 <li data-target="#myCarousel" data-slide-to="1"></li>
                               
-                            </ol> -->  
+                            </ol> 
                             <!-- Wrapper for carousel items -->
                             <div class="carousel-inner">
                            
